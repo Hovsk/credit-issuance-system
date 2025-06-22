@@ -32,7 +32,7 @@ A Symfony based application for managing clients and issuing loans based on flex
 
 ##  API Endpoints
 
-### ➕ Create a Client
+### Create a Client
 
 `POST /api/client`
 
