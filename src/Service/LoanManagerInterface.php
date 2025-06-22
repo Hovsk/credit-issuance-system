@@ -7,5 +7,5 @@ use App\Entity\Loan;
 
 interface LoanManagerInterface
 {
-    public function createLoan(LoanRequestDto $dto): Loan;
+    public function createLoan(int $clientId, LoanRequestDto $dto): Loan;
 }

@@ -13,11 +13,10 @@ class RandomRejectionForPragueRule implements LoanRuleInterface
      */
     public function passes(Client $client): bool
     {
-        if ($client->getAddress()->getRegion() !== Region::PRAGUE) {
+        if (Region::PRAGUE !== $client->getAddress()->getRegion()) {
             return true;
         }
 
         return random_int(1, 100) > 30; // 30% chance to fail
     }
 }
-

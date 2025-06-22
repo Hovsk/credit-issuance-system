@@ -23,4 +23,3 @@ readonly class LoanRulesEvaluator implements LoanRulesEvaluatorInterface
         return LoanStatus::APPROVED;
     }
 }
-

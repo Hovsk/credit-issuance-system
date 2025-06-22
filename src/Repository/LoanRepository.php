@@ -6,7 +6,7 @@ use App\Entity\Loan;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class LoanRepository  extends ServiceEntityRepository implements LoanRepositoryInterface
+class LoanRepository extends ServiceEntityRepository implements LoanRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

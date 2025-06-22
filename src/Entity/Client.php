@@ -14,10 +14,10 @@ class Client
 
     public function __construct(
         #[ORM\Column(length: 50)]
-        private readonly string  $pin,
+        private readonly string $pin,
 
         #[ORM\Column(length: 100)]
-        private readonly string  $name,
+        private readonly string $name,
 
         #[ORM\Column]
         private readonly int $age,
@@ -37,8 +37,7 @@ class Client
 
         #[ORM\Column(length: 20)]
         private readonly string $phone,
-    )
-    {
+    ) {
     }
 
     public function getId(): ?int

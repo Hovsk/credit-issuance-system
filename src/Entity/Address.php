@@ -19,8 +19,7 @@ class Address
 
         #[ORM\Column(length: 2, enumType: Region::class)]
         private readonly Region $region,
-    )
-    {
+    ) {
     }
 
     public function getId(): ?int
@@ -38,6 +37,9 @@ class Address
         return $this->region;
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function toArray(): array
     {
         return [

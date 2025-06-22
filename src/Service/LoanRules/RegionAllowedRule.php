@@ -16,4 +16,3 @@ class RegionAllowedRule implements LoanRuleInterface
         ], true);
     }
 }
-

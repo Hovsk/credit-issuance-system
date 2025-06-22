@@ -12,7 +12,7 @@ class Loan
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private int $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE)]
     private readonly \DateTimeImmutable $startDate;
@@ -40,11 +40,11 @@ class Loan
         #[ORM\Column(type: 'float')]
         private readonly float $rate,
 
-        #[ORM\Column(length: 20, enumType: LoanStatus::class)]
-        private LoanStatus $status = LoanStatus::PENDING,
-
         string $startDate,
         string $endDate,
+
+        #[ORM\Column(length: 20, enumType: LoanStatus::class)]
+        private LoanStatus $status = LoanStatus::PENDING,
     ) {
         $this->startDate = new \DateTimeImmutable($startDate);
         $this->endDate = new \DateTimeImmutable($endDate);

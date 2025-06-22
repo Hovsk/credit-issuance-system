@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Entity\Client;
-use App\Entity\Loan;
 
 interface LoanAdjusterInterface
 {

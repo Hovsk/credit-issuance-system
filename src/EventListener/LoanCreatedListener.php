@@ -8,7 +8,9 @@ use Psr\Log\LoggerInterface;
 
 readonly class LoanCreatedListener
 {
-    public function __construct(private LoggerInterface $logger) {}
+    public function __construct(private LoggerInterface $logger)
+    {
+    }
 
     public function __invoke(LoanCreatedEvent $event): void
     {
@@ -20,7 +22,7 @@ readonly class LoanCreatedListener
             '[%s] Уведомление клиенту %s: Кредит %s.',
             (new \DateTimeImmutable())->format('Y-m-d H:i:s'),
             $clientName,
-            $status === LoanStatus::APPROVED ? 'одобрен' : 'отклонен'
+            LoanStatus::APPROVED === $status ? 'одобрен' : 'отклонен'
         );
 
         $this->logger->info($message);

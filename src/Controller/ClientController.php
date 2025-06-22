@@ -37,14 +37,15 @@ class ClientController extends AbstractController
             $client = $this->clientManager->create($dto);
 
             return $this->json($client->toArray(), Response::HTTP_CREATED);
-
         } catch (ClientAlreadyExistsException $e) {
             return $this->json(['error' => 'Client already exists.'], Response::HTTP_CONFLICT);
         } catch (\RuntimeException $e) {
             $this->logger->error('Unable to create client: {message}', ['message' => $e->getMessage()]);
+
             return $this->json(['error' => 'Unable to create client.'], Response::HTTP_BAD_REQUEST);
         } catch (\Throwable $e) {
             $this->logger->error('Unhandled exception: {message}', ['message' => $e->getMessage()]);
+
             return $this->json(['error' => 'Internal server error.'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

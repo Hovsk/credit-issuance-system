@@ -11,4 +11,3 @@ class MinimumIncomeRule implements LoanRuleInterface
         return $client->getIncome() >= 1000;
     }
 }
-

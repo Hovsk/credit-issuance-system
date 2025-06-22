@@ -2,14 +2,13 @@
 
 namespace App\Dto;
 
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class LoanRequestDto
 {
     #[Assert\NotBlank]
-    #[Assert\Email]
-    public string $email;
+    public string $pin;
 
     #[Assert\NotBlank]
     #[Assert\Length(max: 100)]

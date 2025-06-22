@@ -9,7 +9,7 @@ class OstravaRateIncreaseModifier implements LoanRateModifierInterface
 {
     public function supports(Client $client): bool
     {
-        return $client->getAddress()->getRegion() === Region::OSTRAVA;
+        return Region::OSTRAVA === $client->getAddress()->getRegion();
     }
 
     public function modify(float $baseRate, Client $client): float

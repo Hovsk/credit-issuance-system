@@ -13,7 +13,8 @@ final readonly class ClientManager implements ClientManagerInterface
 {
     public function __construct(
         private ClientRepositoryInterface $clientRepository,
-    ) {}
+    ) {
+    }
 
     public function create(ClientInputDto $dto): Client
     {

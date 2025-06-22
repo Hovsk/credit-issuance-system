@@ -1,7 +1,8 @@
 <?php
+
 namespace App\Controller;
 
-use App\DTO\LoanRequestDto;
+use App\Dto\LoanRequestDto;
 use App\Exception\ClientNotFoundException;
 use App\Service\LoanManagerInterface;
 use Psr\Log\LoggerInterface;
@@ -21,10 +22,11 @@ final class LoanController extends AbstractController
         private readonly ValidatorInterface $validator,
         private readonly LoanManagerInterface $loanManager,
         private readonly LoggerInterface $logger,
-    ) {}
+    ) {
+    }
 
-    #[Route('/api/loan', name: 'loan_create', methods: ['POST'])]
-    public function create(Request $request): JsonResponse
+    #[Route('/api/client/{id}/loan', name: 'loan_create', methods: ['POST'])]
+    public function create(int $id, Request $request): JsonResponse
     {
         try {
             $dto = $this->serializer->deserialize(
@@ -38,7 +40,7 @@ final class LoanController extends AbstractController
                 return $this->json(['errors' => (string) $errors], 422);
             }
 
-            $loan = $this->loanManager->createLoan($dto);
+            $loan = $this->loanManager->createLoan($id, $dto);
 
             return $this->json(
                 [
@@ -52,14 +54,14 @@ final class LoanController extends AbstractController
                 ],
                 Response::HTTP_CREATED,
             );
-
         } catch (NotEncodableValueException) {
-            return $this->json(['error' => 'Invalid JSON payload.'], 400);
+            return $this->json(['error' => 'Invalid JSON payload.'], Response::HTTP_UNPROCESSABLE_ENTITY);
         } catch (ClientNotFoundException $e) {
-            return $this->json(['error' => $e->getMessage()], 404);
+            return $this->json(['error' => $e->getMessage()], Response::HTTP_NOT_FOUND);
         } catch (\Throwable $e) {
             $this->logger->error('Internal server error: {message}', ['message' => $e->getMessage()]);
-            return $this->json(['error' => 'Internal server error.'], 500);
+
+            return $this->json(['error' => 'Internal server error.'], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }
