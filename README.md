@@ -12,7 +12,7 @@ A Symfony based application for managing clients and issuing loans based on flex
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/your-username/credit-issuance-system.git
+   git clone https://github.com/Hovsk/credit-issuance-system.git
    cd credit-issuance-system
    ```
 
