@@ -37,7 +37,7 @@ final class LoanController extends AbstractController
 
             $errors = $this->validator->validate($dto);
             if ($errors->count() > 0) {
-                return $this->json(['errors' => (string) $errors], 422);
+                return $this->json(['errors' => (string) $errors], Response::HTTP_UNPROCESSABLE_ENTITY);
             }
 
             $loan = $this->loanManager->createLoan($id, $dto);
